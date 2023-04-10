@@ -6,6 +6,7 @@ public class CrashDetector : MonoBehaviour
     #region VARIABLES
     [SerializeField] float delay = 1f;
     [SerializeField] ParticleSystem crashEffect;
+    [SerializeField] AudioClip crashSFX;
     #endregion
     #region EVENTS
     void OnTriggerEnter2D(Collider2D other) 
@@ -13,6 +14,7 @@ public class CrashDetector : MonoBehaviour
         if(other.tag == "Ground")
         {
             crashEffect.Play();
+            GetComponent<AudioSource>().PlayOneShot(crashSFX);
             Invoke("ReloadScene", delay);
         }
     }
